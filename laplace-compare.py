@@ -119,17 +119,6 @@ class LaplaceSolver:
                              (u[1:-1:2,1:-2:2] + u[1:-1:2, 3::2])*dx2)*dnr_inv
 	u[2:-1:2, 1:-1:2] = ((u[1:-2:2, 1:-1:2] + u[3::2, 1:-1:2])*dy2 +
                              (u[2:-1:2,0:-2:2] + u[2:-1:2, 2::2])*dx2)*dnr_inv
-
-        if self.count == 0:
-            plt.figure()
-
-        if ( self.count % 200 ) == 0:
-            #plt.contourf(u)
-            plt.imshow(u, interpolation='bilinear', extent=[g.xmin,g.xmax,g.ymin,g.ymax])
-            plt.title("iter=%d" % self.count)
-            plt.xlabel('x')
-            plt.ylabel('y')
-            plt.savefig("%08d.png" % (self.count/200))
         
         return g.computeError()
 
@@ -149,8 +138,6 @@ class LaplaceSolver:
             u = g.u
                         
             self.err = np.empty( (ny-2,), dtype=np.float32)
-      
-            #self.ctx = cl.create_some_context()
             self.ctx = cl.Context(dev_type=cl.device_type.GPU)
 
             self.queue = cl.CommandQueue(self.ctx)
@@ -274,9 +261,9 @@ def time_test(nx=512, ny=512, eps=1.0e-16, n_iter=100, stepper='numpychecker'):
     return time.clock() - t
 
 
-def main(n=256, n_iter=50000):
+def main(n=2048, n_iter=100):
     print "Doing %d iterations on a %dx%d grid"%(n_iter, n, n)
-    for i in ['numpychecker']:
+    for i in ['openclchecker', 'numpychecker', 'numpy']:
         print i,
         sys.stdout.flush()
         t_elap = time_test(n, n, stepper=i, n_iter=n_iter)
