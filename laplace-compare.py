@@ -263,7 +263,7 @@ def time_test(nx=512, ny=512, eps=1.0e-16, n_iter=100, stepper='numpychecker'):
 
 def main(n=2048, n_iter=100):
     print "Doing %d iterations on a %dx%d grid"%(n_iter, n, n)
-    for i in ['openclchecker', 'numpychecker', 'numpy']:
+    for i in [ 'numpychecker', 'openclchecker']:
         print i,
         sys.stdout.flush()
         t_elap = time_test(n, n, stepper=i, n_iter=n_iter)
