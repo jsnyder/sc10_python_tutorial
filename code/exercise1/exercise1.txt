@@ -1,0 +1,32 @@
+Exercise 1:
+
+The file grades.txt has the following format:
+
+name                 gender     class                   grades
+(string of chars)    (M or F)   (class number)          (10 grades as integer percentages)
+
+Safely read in a dataset from the file grades.txt, without using a "for" or "while" loop to perform the calculations:
+
+* each student's average
+* the average grade on tests
+* the average grades for males and females
+* the average male and female grades for just class 2
+
+then print out all results in the format:
+
+Student     Class       Average
+name        class       average_grade
+name        class       average_grade
+name        class       average_grade
+name        class       average_grade
+name        class       average_grade
+
+Male Average: male_average_grade
+Female Average: female_average_grade
+
+Class 1 Male Average:
+Class 1 Female Average:
+Class 2 Male Average:
+Class 2 Female Average:
+Class 3 Male Average:
+Class 3 Female Average:
