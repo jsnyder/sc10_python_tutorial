@@ -261,7 +261,7 @@ def time_test(nx=512, ny=512, eps=1.0e-16, n_iter=100, stepper='numpychecker'):
     return time.clock() - t
 
 
-def main(n=2048, n_iter=100):
+def main(n=256, n_iter=100):
     print "Doing %d iterations on a %dx%d grid"%(n_iter, n, n)
     for i in [ 'numpychecker', 'openclchecker']:
         print i,
